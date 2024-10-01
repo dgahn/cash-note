@@ -1,10 +1,10 @@
 package me.dgahn.application.service
 
-import me.dgahn.infrastructure.client.CommunityClient
+import me.dgahn.infrastructure.client.http.client.CommunityClient
 import org.springframework.stereotype.Service
 
 @Service
-class QuickConnectChecker(
+class QuickConnectCheckService(
     private val communityClient: CommunityClient,
 ) {
     fun check(registrationNumber: String): Boolean {

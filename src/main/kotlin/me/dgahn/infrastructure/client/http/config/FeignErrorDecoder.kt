@@ -1,4 +1,4 @@
-package me.dgahn.infrastructure.config
+package me.dgahn.infrastructure.client.http.config
 
 import feign.Response
 import feign.codec.ErrorDecoder

@@ -4,7 +4,7 @@ import com.epages.restdocs.apispec.ResourceDocumentation
 import com.epages.restdocs.apispec.ResourceSnippetParametersBuilder
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
-import me.dgahn.application.service.QuickConnectChecker
+import me.dgahn.application.service.QuickConnectCheckService
 import me.dgahn.interfaces.restdoc.AbstractRestDocControllerTest
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -24,7 +24,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 @AutoConfigureRestDocs
 class QuickConnectControllerTest : AbstractRestDocControllerTest() {
     @MockkBean
-    lateinit var quickConnectChecker: QuickConnectChecker
+    lateinit var quickConnectCheckService: QuickConnectCheckService
 
     @DisplayName("[GET] /api/v1/quick-connect/availability")
     @Test
@@ -32,7 +32,7 @@ class QuickConnectControllerTest : AbstractRestDocControllerTest() {
         val url = "api/v1/quick-connect/availability"
         val registrationNumber = "123-45-67890"
 
-        every { quickConnectChecker.check(registrationNumber) } returns true
+        every { quickConnectCheckService.check(registrationNumber) } returns true
 
         val queryParams = listOf(
             RequestDocumentation.parameterWithName("registrationNumber").description("사업자등록번호"),

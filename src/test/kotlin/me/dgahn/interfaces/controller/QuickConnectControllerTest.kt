@@ -34,7 +34,7 @@ class QuickConnectControllerTest : AbstractRestDocControllerTest() {
 
         every { quickConnectChecker.check(registrationNumber) } returns true
 
-        val requestFields = listOf(
+        val queryParams = listOf(
             RequestDocumentation.parameterWithName("registrationNumber").description("사업자등록번호"),
         )
         val responseFields = listOf(
@@ -63,7 +63,7 @@ class QuickConnectControllerTest : AbstractRestDocControllerTest() {
                             .tag("CashNote API")
                             .summary("간편 연결 대상 여부 조회 API")
                             .description("간편 연결 대상 여부를 공동체 서버를 통해서 조회합니다.")
-                            .queryParameters(*requestFields.toTypedArray())
+                            .queryParameters(*queryParams.toTypedArray())
                             .responseFields(responseFields)
                             .build(),
                     ),

@@ -11,3 +11,15 @@ spring:
     jpa:
         database-platform: org.hibernate.dialect.H2Dialect
         show-sql: true
+    cloud:
+        discovery:
+          client:
+            simple:
+                instances:
+                    community:
+                        - service-id: community
+                          instance-id: community1
+                          uri: http://localhost:8080
+        openfeign:
+            okhttp:
+                enabled: true

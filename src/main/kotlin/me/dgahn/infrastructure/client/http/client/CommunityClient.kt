@@ -21,10 +21,14 @@ private val logger = KotlinLogging.logger { }
 )
 interface CommunityClient {
     @GetMapping("/has-business")
-    fun check(@RequestParam registrationNumber: String): HasBusinessResponseDto
+    fun check(
+        @RequestParam registrationNumber: String,
+    ): HasBusinessResponseDto
 
     @PostMapping("/register-data-communication")
-    fun register(@RequestBody request: RegisterRequestDto)
+    fun register(
+        @RequestBody request: RegisterRequestDto,
+    )
 
     @Component
     class CommunityClientFallbackFactory : FallbackFactory<CommunityClient> {

@@ -19,11 +19,11 @@ class TermEntity(
     val agreeStatus: AgreeStatus,
 ) : BaseEntity() {
     fun toDomain(): Term {
-        return Term(
+        return Term.create(
             registrationNumber = registrationNumber,
-            agreeStatus = agreeStatus,
+            agreedType = agreeStatus.agreedType,
         )
     }
 }
 
-fun Term.toEntity(): TermEntity = TermEntity(registrationNumber = registrationNumber, agreeStatus = agreeStatus)
+fun Term.toEntity(): TermEntity = TermEntity(registrationNumber = registrationNumber.value, agreeStatus = agreeStatus)

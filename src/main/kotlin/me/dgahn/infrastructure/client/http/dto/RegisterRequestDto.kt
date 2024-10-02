@@ -8,6 +8,6 @@ data class RegisterRequestDto(
 )
 
 fun Term.toRegisterRequestDto() = RegisterRequestDto(
-    registrationNumber = this.registrationNumber,
+    registrationNumber = this.registrationNumber.value,
     agreedType = this.agreeStatus.agreedType,
 )

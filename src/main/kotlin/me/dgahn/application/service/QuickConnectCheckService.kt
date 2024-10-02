@@ -8,6 +8,6 @@ class QuickConnectCheckService(
     private val communityClient: CommunityClient,
 ) {
     fun check(registrationNumber: String): Boolean {
-        return communityClient.check(registrationNumber)
+        return communityClient.check(registrationNumber).result
     }
 }

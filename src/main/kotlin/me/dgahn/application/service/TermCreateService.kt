@@ -1,6 +1,6 @@
 package me.dgahn.application.service
 
-import me.dgahn.domain.command.TermSaver
+import me.dgahn.domain.service.TermSaver
 import me.dgahn.domain.model.Term
 import me.dgahn.infrastructure.client.http.client.CommunityClient
 import me.dgahn.infrastructure.client.http.dto.toRegisterRequestDto

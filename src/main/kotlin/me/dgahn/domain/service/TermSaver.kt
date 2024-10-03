@@ -1,4 +1,4 @@
-package me.dgahn.domain.command
+package me.dgahn.domain.service
 
 import me.dgahn.domain.model.Term
 import me.dgahn.infrastructure.database.entity.toEntity

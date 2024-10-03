@@ -59,3 +59,19 @@ class CardTransactionHistoryEntity(
         )
     }
 }
+
+fun CardTransactionHistory.toEntity(syncInfoEntity: CommunitySyncInfoEntity): CardTransactionHistoryEntity {
+    return CardTransactionHistoryEntity(
+        approvalNumber = this.approvalNumber,
+        transactionType = this.transactionType,
+        transactionDate = this.transactionDate,
+        transactionTime = this.transactionTime,
+        cardCompany = this.cardCompany,
+        affiliatedCardCompany = this.affiliatedCardCompany,
+        cardNumber = this.cardNumber,
+        approvalAmount = this.approvalAmount,
+        installmentPeriod = this.installmentPeriod,
+        provider = this.provider,
+        communitySyncInfoEntity = syncInfoEntity
+    )
+}

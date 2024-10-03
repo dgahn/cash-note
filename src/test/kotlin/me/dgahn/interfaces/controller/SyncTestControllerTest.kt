@@ -4,7 +4,9 @@ import com.epages.restdocs.apispec.ResourceDocumentation
 import com.epages.restdocs.apispec.ResourceSnippetParametersBuilder
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
+import me.dgahn.application.service.DailyCardTransactionHistorySyncService
 import me.dgahn.application.service.InitCardTransactionHistorySyncService
+import me.dgahn.infrastructure.queue.producer.CardHistoryEventProducer
 import me.dgahn.interfaces.restdoc.AbstractRestDocControllerTest
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -23,6 +25,12 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 class SyncTestControllerTest : AbstractRestDocControllerTest() {
     @MockkBean
     lateinit var initSyncService: InitCardTransactionHistorySyncService
+
+    @MockkBean
+    lateinit var dailySyncService: DailyCardTransactionHistorySyncService
+
+    @MockkBean
+    lateinit var producer: CardHistoryEventProducer
 
     @DisplayName("[GET] /sync-init")
     @Test
@@ -65,7 +73,7 @@ class SyncTestControllerTest : AbstractRestDocControllerTest() {
     @Test
     fun `데일리 싱크 init 테스트 API를 호출할 수 있다`() {
         val url = "sync-daily"
-        every { initSyncService.sync() } returns Unit
+        every { dailySyncService.sync() } returns Unit
 
         val documentId = "get/$url"
         val result = mockMvc
@@ -88,6 +96,43 @@ class SyncTestControllerTest : AbstractRestDocControllerTest() {
                             .tag("Sync Test API")
                             .summary("데일리 Sync 테스트 API")
                             .description("데일리 Sync 테스트를 위한 API")
+                            .build(),
+                    ),
+                ),
+            )
+
+        result
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andDo(MockMvcResultHandlers.print())
+    }
+
+    @DisplayName("[GET] /sync-community")
+    @Test
+    fun `공동체 sync 테스트 API를 호출할 수 있다`() {
+        val url = "sync-community"
+        every { producer.send(any()) } returns Unit
+
+        val documentId = "get/$url"
+        val result = mockMvc
+            .perform(
+                RestDocumentationRequestBuilders
+                    .get("/$url")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .characterEncoding("utf-8"),
+            ).andExpect(
+                MockMvcResultMatchers
+                    .status()
+                    .isOk(),
+            ).andDo(
+                MockMvcRestDocumentation.document(
+                    documentId,
+                    Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
+                    Preprocessors.preprocessResponse(Preprocessors.prettyPrint()),
+                    ResourceDocumentation.resource(
+                        ResourceSnippetParametersBuilder()
+                            .tag("Sync Test API")
+                            .summary("공동체 Sync 테스트 API")
+                            .description("공동체 Sync 테스트를 위한 API(RabbitMq)")
                             .build(),
                     ),
                 ),

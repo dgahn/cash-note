@@ -15,3 +15,5 @@ val objectMapper: ObjectMapper = ObjectMapper()
             .configure(KotlinFeature.NullToEmptyMap, true)
             .build(),
     )
+
+inline fun <reified T> T.toJson(): String = objectMapper.writeValueAsString(this)

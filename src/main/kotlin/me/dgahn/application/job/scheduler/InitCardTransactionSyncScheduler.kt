@@ -1,4 +1,4 @@
-package me.dgahn.interfaces.job.scheduler
+package me.dgahn.application.job.scheduler
 
 import me.dgahn.application.service.InitCardTransactionHistorySyncService
 import mu.KotlinLogging

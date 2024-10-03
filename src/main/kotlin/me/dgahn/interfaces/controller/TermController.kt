@@ -13,9 +13,7 @@ class TermController(
     private val termCreateService: TermCreateService,
 ) {
     @PostMapping("/api/v1/terms/agreement")
-    fun agree(
-        @RequestBody request: TermAgreementRequestDto,
-    ) {
+    fun agree(@RequestBody request: TermAgreementRequestDto) {
         termCreateService.createTerm(request.registrationNumber, request.agreedType)
     }
 }

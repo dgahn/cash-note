@@ -1,4 +1,4 @@
-package me.dgahn.interfaces.job.config
+package me.dgahn.application.job.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

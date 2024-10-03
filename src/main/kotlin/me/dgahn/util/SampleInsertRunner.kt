@@ -36,9 +36,8 @@ class SampleInsertRunner(
             registrationNumber = "111-11-11111",
             syncStatus = SyncStatus.NOT_SYNCED,
             lastSyncedAt = null,
-        )
+        ),
     )
-
 
     // 약관 동의 한 정보
     private fun readyInfo(): CommunitySyncInfoEntity = communitySyncInfoRepository.save(
@@ -46,25 +45,25 @@ class SampleInsertRunner(
             registrationNumber = "222-22-22222",
             syncStatus = SyncStatus.READY,
             lastSyncedAt = null,
-        )
+        ),
     )
 
     // 최초 데이터 전송 완료한 정보
     private fun syncedInfo(): CommunitySyncInfoEntity = communitySyncInfoRepository.save(
         CommunitySyncInfoEntity(
-            registrationNumber = "333-33-3333",
+            registrationNumber = "333-33-33333",
             syncStatus = SyncStatus.INITIAL_SYNC,
             lastSyncedAt = null,
-        )
+        ),
     )
 
     // 이미 데일리 하고 있는 정보
     private fun dailyInfo(): CommunitySyncInfoEntity = communitySyncInfoRepository.save(
         CommunitySyncInfoEntity(
-            registrationNumber = "333-33-3333",
+            registrationNumber = "444-44-44444",
             syncStatus = SyncStatus.DAILY_SYNC,
             lastSyncedAt = null,
-        )
+        ),
     )
 
     private fun initIncludeHistories(syncInfo: CommunitySyncInfoEntity): List<CardTransactionHistoryEntity> =

@@ -1,6 +1,6 @@
 package me.dgahn.interfaces.job.scheduler
 
-import me.dgahn.application.service.InitCardTransactionHistorySyncService
+import me.dgahn.application.service.DailyCardTransactionHistorySyncService
 import mu.KotlinLogging
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.scheduling.annotation.Scheduled
@@ -11,7 +11,7 @@ private val logger = KotlinLogging.logger {}
 @Component
 class DailyCardTransactionSyncScheduler(
     @Value("\${schedule.card-transaction-history-sync.use}") private val useSchedule: Boolean,
-    private val syncService: InitCardTransactionHistorySyncService,
+    private val syncService: DailyCardTransactionHistorySyncService,
 ) {
     @Scheduled(cron = "\${schedule.card-transaction-history-sync.cron}")
     fun sync() {

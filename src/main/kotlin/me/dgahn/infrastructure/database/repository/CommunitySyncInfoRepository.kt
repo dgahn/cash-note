@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface CommunitySyncInfoRepository : JpaRepository<CommunitySyncInfoEntity, String> {
     fun findAllBySyncStatus(syncStatus: SyncStatus): List<CommunitySyncInfoEntity>
+
+    fun findAllBySyncStatusIn(syncStatuses: List<SyncStatus>): List<CommunitySyncInfoEntity>
 }

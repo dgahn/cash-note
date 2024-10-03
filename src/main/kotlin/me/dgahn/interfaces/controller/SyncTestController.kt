@@ -1,5 +1,6 @@
 package me.dgahn.interfaces.controller
 
+import me.dgahn.application.service.DailyCardTransactionHistorySyncService
 import me.dgahn.application.service.InitCardTransactionHistorySyncService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping
 class SyncTestController(
     private val initSynService: InitCardTransactionHistorySyncService,
+    private val dailySynService: DailyCardTransactionHistorySyncService,
 ) {
     @GetMapping("/sync-init")
     fun syncInit() {
@@ -17,6 +19,6 @@ class SyncTestController(
 
     @GetMapping("/sync-daily")
     fun syncDaily() {
-        initSynService.sync()
+        dailySynService.sync()
     }
 }

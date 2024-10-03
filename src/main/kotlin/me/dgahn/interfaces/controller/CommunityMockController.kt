@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import java.time.LocalDate
-import java.time.LocalDateTime
 
 private val logger = KotlinLogging.logger { }
 
@@ -44,6 +43,10 @@ class CommunityMockController {
         @RequestBody request: List<RegisterDataCardRequestDto>,
     ) {
         val today = LocalDate.now().minusDays(1)
-        logger.info { "called mock api, request size: ${request.size}, yesterday: ${request.count { it.transactionDate == today  }}" }
+        logger.info {
+            "called mock api, request size: ${request.size}, yesterday: ${request.count {
+                it.transactionDate == today
+            }}"
+        }
     }
 }

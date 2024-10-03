@@ -60,4 +60,41 @@ class SyncTestControllerTest : AbstractRestDocControllerTest() {
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andDo(MockMvcResultHandlers.print())
     }
+
+    @DisplayName("[GET] /sync-daily")
+    @Test
+    fun `데일리 싱크 init 테스트 API를 호출할 수 있다`() {
+        val url = "sync-daily"
+        every { initSyncService.sync() } returns Unit
+
+        val documentId = "get/$url"
+        val result = mockMvc
+            .perform(
+                RestDocumentationRequestBuilders
+                    .get("/$url")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .characterEncoding("utf-8"),
+            ).andExpect(
+                MockMvcResultMatchers
+                    .status()
+                    .isOk(),
+            ).andDo(
+                MockMvcRestDocumentation.document(
+                    documentId,
+                    Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
+                    Preprocessors.preprocessResponse(Preprocessors.prettyPrint()),
+                    ResourceDocumentation.resource(
+                        ResourceSnippetParametersBuilder()
+                            .tag("Sync Test API")
+                            .summary("데일리 Sync 테스트 API")
+                            .description("데일리 Sync 테스트를 위한 API")
+                            .build(),
+                    ),
+                ),
+            )
+
+        result
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andDo(MockMvcResultHandlers.print())
+    }
 }

@@ -14,4 +14,10 @@ class CommunitySyncInfoSearcher(
             .findAllBySyncStatus(syncStatus)
             .map { it.toDomain() }
     }
+
+    fun search(syncStatuses: List<SyncStatus>): List<CommunitySyncInfo> {
+        return communitySyncInfoRepository
+            .findAllBySyncStatusIn(syncStatuses)
+            .map { it.toDomain() }
+    }
 }

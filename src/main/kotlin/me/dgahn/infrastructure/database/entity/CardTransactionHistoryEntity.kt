@@ -5,6 +5,7 @@ import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
 import jakarta.persistence.Enumerated
 import jakarta.persistence.Id
+import jakarta.persistence.Index
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
 import jakarta.persistence.Table
@@ -15,7 +16,12 @@ import java.time.LocalDate
 import java.time.LocalTime
 
 @Entity
-@Table(name = "card_transaction_history")
+@Table(
+    name = "card_transaction_history",
+    indexes = [
+        Index(name = "idx_created_at", columnList = "created_at"),
+    ]
+)
 class CardTransactionHistoryEntity(
     @Id
     @Column(name = "approval_number", updatable = false, nullable = false)

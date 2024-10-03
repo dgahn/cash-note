@@ -2,7 +2,8 @@ package me.dgahn.infrastructure.client.http.client
 
 import me.dgahn.infrastructure.client.http.config.FeignConfig
 import me.dgahn.infrastructure.client.http.dto.HasBusinessResponseDto
-import me.dgahn.infrastructure.client.http.dto.RegisterRequestDto
+import me.dgahn.infrastructure.client.http.dto.RegisterDataCardRequestDto
+import me.dgahn.infrastructure.client.http.dto.RegisterDataCommunicationRequestDto
 import mu.KotlinLogging
 import org.springframework.cloud.openfeign.FallbackFactory
 import org.springframework.cloud.openfeign.FeignClient
@@ -26,8 +27,13 @@ interface CommunityClient {
     ): HasBusinessResponseDto
 
     @PostMapping("/register-data-communication")
-    fun register(
-        @RequestBody request: RegisterRequestDto,
+    fun registerDataCommunication(
+        @RequestBody request: RegisterDataCommunicationRequestDto,
+    )
+
+    @PostMapping("/register-data-card")
+    fun registerDataCard(
+        @RequestBody request: List<RegisterDataCardRequestDto>,
     )
 
     @Component
@@ -43,7 +49,15 @@ interface CommunityClient {
                 throw cause
             }
 
-            override fun register(request: RegisterRequestDto) {
+            override fun registerDataCommunication(request: RegisterDataCommunicationRequestDto) {
+                logger.warn(cause) {
+                    "공동체 check API에서 폴백이 발생하였습니다. " +
+                        "request: $request, cause: $cause"
+                }
+                throw cause
+            }
+
+            override fun registerDataCard(request: List<RegisterDataCardRequestDto>) {
                 logger.warn(cause) {
                     "공동체 check API에서 폴백이 발생하였습니다. " +
                         "request: $request, cause: $cause"

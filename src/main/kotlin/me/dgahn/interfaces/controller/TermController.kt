@@ -2,7 +2,6 @@ package me.dgahn.interfaces.controller
 
 import me.dgahn.application.service.TermCreateService
 import me.dgahn.interfaces.dto.TermAgreementRequestDto
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -16,8 +15,7 @@ class TermController(
     @PostMapping("/api/v1/terms/agreement")
     fun agree(
         @RequestBody request: TermAgreementRequestDto,
-    ): ResponseEntity<Unit> {
+    ) {
         termCreateService.createTerm(request.registrationNumber, request.agreedType)
-        return ResponseEntity.ok().build()
     }
 }

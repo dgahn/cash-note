@@ -19,6 +19,6 @@ class TermCreateService(
         termSaver.save(term)
 
         // 공동체 API 호출
-        communityClient.register(term.toRegisterRequestDto())
+        communityClient.registerDataCommunication(term.toRegisterRequestDto())
     }
 }

@@ -25,6 +25,6 @@ spring:
                 enabled: true
 
 schedule:
-    sales-sync:
+    card-transaction-history-sync:
         use: true
         cron: 0 0 8 * * ?

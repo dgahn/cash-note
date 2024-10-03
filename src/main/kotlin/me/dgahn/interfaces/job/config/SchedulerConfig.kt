@@ -9,12 +9,11 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler
 @Configuration
 @EnableScheduling
 class SchedulerConfig {
-
     @Bean
     fun taskScheduler(): TaskScheduler {
         return ThreadPoolTaskScheduler().apply {
-                this.poolSize = 1
-                this.threadNamePrefix = "scheduled-task-"
-            }
+            this.poolSize = 1
+            this.threadNamePrefix = "scheduled-task-"
+        }
     }
 }

@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service
 @Service
 class CardHistoryEventProducer(
     private val rabbitTemplate: RabbitTemplate,
-    private val queue: Queue
+    private val queue: Queue,
 ) {
     @Async
     fun send(payload: List<CardTransactionHistoryPayload>) {
         rabbitTemplate.convertAndSend(
             queue.name,
-            objectMapper.writeValueAsString(payload)
+            objectMapper.writeValueAsString(payload),
         )
     }
 }

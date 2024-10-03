@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class CardTransactionHistoryCreateService(
     private val cardTransactionHistorySaver: CardTransactionHistorySaver,
-    private val communitySyncInfoSearcher: CommunitySyncInfoSearcher
+    private val communitySyncInfoSearcher: CommunitySyncInfoSearcher,
 ) {
     @Transactional
     fun create(payloads: List<CardTransactionHistoryPayload>) {

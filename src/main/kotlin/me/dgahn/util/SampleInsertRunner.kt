@@ -35,7 +35,6 @@ class SampleInsertRunner(
         CommunitySyncInfoEntity(
             registrationNumber = "111-11-11111",
             syncStatus = SyncStatus.NOT_SYNCED,
-            lastSyncedAt = null,
         ),
     )
 
@@ -44,7 +43,6 @@ class SampleInsertRunner(
         CommunitySyncInfoEntity(
             registrationNumber = "222-22-22222",
             syncStatus = SyncStatus.READY,
-            lastSyncedAt = null,
         ),
     )
 
@@ -53,7 +51,6 @@ class SampleInsertRunner(
         CommunitySyncInfoEntity(
             registrationNumber = "333-33-33333",
             syncStatus = SyncStatus.INITIAL_SYNC,
-            lastSyncedAt = null,
         ),
     )
 
@@ -62,7 +59,6 @@ class SampleInsertRunner(
         CommunitySyncInfoEntity(
             registrationNumber = "444-44-44444",
             syncStatus = SyncStatus.DAILY_SYNC,
-            lastSyncedAt = null,
         ),
     )
 

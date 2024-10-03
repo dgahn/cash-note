@@ -20,7 +20,6 @@ class InitCardTransactionSyncScheduler(
             return
         }
 
-        // ToDo 청크 처리 필요
         syncService.sync()
     }
 }

@@ -72,6 +72,6 @@ fun CardTransactionHistory.toEntity(syncInfoEntity: CommunitySyncInfoEntity): Ca
         approvalAmount = this.approvalAmount,
         installmentPeriod = this.installmentPeriod,
         provider = this.provider,
-        communitySyncInfoEntity = syncInfoEntity
+        communitySyncInfoEntity = syncInfoEntity,
     )
 }
